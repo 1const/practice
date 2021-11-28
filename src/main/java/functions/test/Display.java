@@ -10,6 +10,7 @@ public class Display extends Canvas implements Runnable {
     public static final int WEIGH = 800;
     public static final int HEIGHT = 800;
     private MyPolygon myPolygon;
+
     public Display() {
         this.frame = new JFrame();
         Dimension dimension = new Dimension(WEIGH, HEIGHT);
@@ -32,22 +33,35 @@ public class Display extends Canvas implements Runnable {
 
     @Override
     public void run() {
+        long lastTime = System.nanoTime();
+        long timer = System.currentTimeMillis();
+        final double ns = 1000000000.0 / 60;
+        double delta = 0;
+        int frames = 0;
+        init();
         while (running) {
-            init();
-            update();
+            long now = System.nanoTime();
+            delta += (now - lastTime) / ns;
+            lastTime = now;
+            while (delta >= 1) {
+                update();
+                delta--;
+            }
             render();
         }
     }
-    public void init(){
+
+    public void init() {
         this.myPolygon = new MyPolygon(
                 new MyPoint(0, 0, 0),
                 new MyPoint(0, 100, 0),
-                new MyPoint(0, 0, 100),
-                new MyPoint(100, 0, 0)
+                new MyPoint(0, 100, 100),
+                new MyPoint(0, 0, 100)
         );
     }
+
     private void update() {
-        myPolygon.rotate(20,0,0);
+        myPolygon.rotate(0, 0, 1);
     }
 
     public void stop() {
