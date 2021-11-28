@@ -18,4 +18,9 @@ public class MyPolygon {
         graphics.setColor(color);
         graphics.fillPolygon(polygon);
     }
+    public void rotate(double xDegrees, double yDegrees, double zDegrees){
+        for(MyPoint point : myPoints){
+            PointConverter.rotateX(point, xDegrees);
+        }
+    }
 }

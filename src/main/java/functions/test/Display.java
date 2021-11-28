@@ -9,7 +9,7 @@ public class Display extends Canvas implements Runnable {
     private boolean running = true;
     public static final int WEIGH = 800;
     public static final int HEIGHT = 800;
-
+    private MyPolygon myPolygon;
     public Display() {
         this.frame = new JFrame();
         Dimension dimension = new Dimension(WEIGH, HEIGHT);
@@ -25,14 +25,7 @@ public class Display extends Canvas implements Runnable {
         Graphics graphics = strategy.getDrawGraphics();
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, WEIGH, HEIGHT);
-        MyPolygon polygon = new MyPolygon(
-                new MyPoint(0, 0, 0),
-                new MyPoint(0, 100, 0),
-                new MyPoint(0, 0, 100),
-                new MyPoint(100, 0, 0)
-
-        );
-        polygon.render(graphics);
+        myPolygon.render(graphics);
         graphics.dispose();
         strategy.show();
     }
@@ -40,8 +33,21 @@ public class Display extends Canvas implements Runnable {
     @Override
     public void run() {
         while (running) {
+            init();
+            update();
             render();
         }
+    }
+    public void init(){
+        this.myPolygon = new MyPolygon(
+                new MyPoint(0, 0, 0),
+                new MyPoint(0, 100, 0),
+                new MyPoint(0, 0, 100),
+                new MyPoint(100, 0, 0)
+        );
+    }
+    private void update() {
+        myPolygon.rotate(20,0,0);
     }
 
     public void stop() {
