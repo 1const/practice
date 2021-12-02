@@ -9,12 +9,17 @@ public class Display extends Canvas implements Runnable {
     private boolean running = true;
     public static final int WEIGH = 800;
     public static final int HEIGHT = 800;
-    private MyPolygon myPolygon;
+    private cube cube;
+    private Mouse mouse;
+    private MyPolygon polygon;
 
     public Display() {
         this.frame = new JFrame();
         Dimension dimension = new Dimension(WEIGH, HEIGHT);
         frame.setPreferredSize(dimension);
+        this.mouse = new Mouse();
+        this.addMouseListener(mouse);
+        this.addMouseMotionListener(mouse);
     }
 
     public void render() {
@@ -26,7 +31,8 @@ public class Display extends Canvas implements Runnable {
         Graphics graphics = strategy.getDrawGraphics();
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, WEIGH, HEIGHT);
-        myPolygon.render(graphics);
+        cube.render(graphics);
+        //polygon.render(graphics);
         graphics.dispose();
         strategy.show();
     }
@@ -52,16 +58,31 @@ public class Display extends Canvas implements Runnable {
     }
 
     public void init() {
-        this.myPolygon = new MyPolygon(
-                new MyPoint(0, 0, 0),
-                new MyPoint(0, 100, 0),
-                new MyPoint(0, 100, 100),
-                new MyPoint(0, 0, 100)
-        );
+        this.cube = new cube(150);
+        //this.polygon = new MyPolygon(
+        //      new MyPoint(0, 0, 0),
+        //      new MyPoint(0, 100, 0),
+        //      new MyPoint(0, 100, 100),
+        //      new MyPoint(0, 0, 100)
+        //     );
     }
 
+    int x2;
+    int y2;
+
     private void update() {
-        myPolygon.rotate(0, 0, 1);
+       //  int x = mouse.getMouseX();
+      //    int y = mouse.getMouseY();
+      //   if (mouse.mouseISDragged) {
+       //      int newX = x - x2;
+      //     int newY = y - y2;
+      //  cube.rotate(1, 1, 0);
+             cube.rotate(1, 1, 1);
+
+       //   }
+      //    mouse.mouseISDragged = false;
+      //    x2 = mouse.getMouseX();
+       //   y2 = mouse.getMouseY();
     }
 
     public void stop() {

@@ -1,6 +1,7 @@
 package functions.test;
 
 import java.awt.Point;
+import java.util.List;
 
 public class PointConverter {
     public static Point pointConvert(MyPoint myPoint3D) {
@@ -32,4 +33,5 @@ public class PointConverter {
         point.x = vector * Math.sin(a);
         point.y = vector * Math.cos(a);
     }
+
 }

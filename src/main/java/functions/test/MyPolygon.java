@@ -1,14 +1,28 @@
 package functions.test;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class MyPolygon {
     MyPoint[] myPoints;
-    Color color;
+    private Color color = Color.CYAN;
 
     public MyPolygon(MyPoint... myPoints) {
-        this.color = Color.ORANGE;
         this.myPoints = myPoints;
+    }
+
+    public MyPolygon(Color color, MyPoint... myPoints) {
+        this.color = color;
+        this.myPoints = myPoints;
+    }
+
+    public MyPoint[] getMyPoints() {
+        return myPoints;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public void render(Graphics graphics) {
@@ -27,5 +41,23 @@ public class MyPolygon {
             PointConverter.rotateY(point, yDegrees);
             PointConverter.rotateZ(point, zDegrees);
         }
+    }
+
+    public double getAverageX() {
+        double sum = 0;
+        for (MyPoint p : myPoints) {
+            sum += p.x;
+        }
+        return sum / myPoints.length;
+    }
+
+    public static MyPolygon[] sortPolygons(MyPolygon[] myPolygons) {
+        List<MyPolygon> polygonList = Arrays.asList(myPolygons);
+
+        polygonList.sort((MyPolygon a, MyPolygon b) -> {
+            return a.getAverageX() > b.getAverageX() ? 1 : -1;
+        });
+
+        return polygonList.toArray(new MyPolygon[0]);
     }
 }

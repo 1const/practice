@@ -10,4 +10,9 @@ public class MyPoint {
         this.y = y;
         this.z = z;
     }
+
+    public static double depth(double o) {
+        double kX = o * 0.5;
+        return o + Math.abs(kX);
+    }
 }
