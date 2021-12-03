@@ -20,6 +20,7 @@ public class Display extends Canvas implements Runnable {
         this.mouse = new Mouse();
         this.addMouseListener(mouse);
         this.addMouseMotionListener(mouse);
+        this.addMouseWheelListener(mouse);
     }
 
     public void render() {
@@ -32,7 +33,6 @@ public class Display extends Canvas implements Runnable {
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, WEIGH, HEIGHT);
         cube.render(graphics);
-        //polygon.render(graphics);
         graphics.dispose();
         strategy.show();
     }
@@ -59,31 +59,22 @@ public class Display extends Canvas implements Runnable {
 
     public void init() {
         this.cube = new cube(150);
-        //this.polygon = new MyPolygon(
-        //      new MyPoint(0, 0, 0),
-        //      new MyPoint(0, 100, 0),
-        //      new MyPoint(0, 100, 100),
-        //      new MyPoint(0, 0, 100)
-        //     );
     }
 
-    int x2;
-    int y2;
-
+    int initialY;
+    int initialX;
     private void update() {
-       //  int x = mouse.getMouseX();
-      //    int y = mouse.getMouseY();
-      //   if (mouse.mouseISDragged) {
-       //      int newX = x - x2;
-      //     int newY = y - y2;
-      //  cube.rotate(1, 1, 0);
-             cube.rotate(1, 1, 1);
-
-       //   }
-      //    mouse.mouseISDragged = false;
-      //    x2 = mouse.getMouseX();
-       //   y2 = mouse.getMouseY();
-    }
+        int y = mouse.getMouseX();
+        int x = mouse.getMouseY();
+            if (mouse.getMouseB() == 1) {
+                int difY = y - initialY;
+                int difX = x - initialX;
+                cube.rotate(0, -difX/2.0, difY/2.0);
+            }
+             initialY = y;
+             initialX = x;
+         //  cube.zoom(mouse.wheelRotation, 1);
+        }
 
     public void stop() {
         running = false;

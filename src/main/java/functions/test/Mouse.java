@@ -6,50 +6,36 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
     private int mouseX;
     private int mouseY;
     private int mouseB;
-    public boolean mouseISDragged = false;
-
+    public int wheelRotation;
     public int getMouseX() {
         return mouseX;
-    }
-
-    public void setMouseX(int mouseX) {
-        this.mouseX = mouseX;
     }
 
     public int getMouseY() {
         return mouseY;
     }
 
-    public void setMouseY(int mouseY) {
-        this.mouseY = mouseY;
-    }
-
     public int getMouseB() {
         return mouseB;
     }
 
-    public void setMouseB(int mouseB) {
-        this.mouseB = mouseB;
-    }
-
     @Override
     public void mouseDragged(MouseEvent e) {
-        mouseISDragged = true;
         this.mouseX =  e.getX();
         this.mouseY =  e.getY();
     }
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        mouseB = e.getButton();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        mouseB = -1;
     }
 
     @Override
@@ -64,11 +50,12 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        this.mouseX =  e.getX();
+        this.mouseY =  e.getY();
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-
+        wheelRotation = e.getWheelRotation();
     }
 }

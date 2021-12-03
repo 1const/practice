@@ -50,6 +50,12 @@ public class MyPolygon {
         }
         return sum / myPoints.length;
     }
+    public void zoom(int w, double k){
+        double sum = Arrays.stream(myPoints).mapToDouble(point -> point.x).sum();
+        for(MyPoint p: myPoints){
+            p.x += w*k;
+        }
+    }
 
     public static MyPolygon[] sortPolygons(MyPolygon[] myPolygons) {
         List<MyPolygon> polygonList = Arrays.asList(myPolygons);

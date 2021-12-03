@@ -63,5 +63,12 @@ public class cube extends MyPolygon {
             p.rotate(xDegrees, yDegrees, zDegrees);
         }
     }
+
+    @Override
+    public void zoom(int w, double k) {
+        for (MyPolygon p : myPolygons) {
+            p.zoom(w, k);
+        }
+    }
 }
 
