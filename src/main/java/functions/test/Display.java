@@ -10,9 +10,9 @@ public class Display extends Canvas implements Runnable {
     public static final int WEIGH = 800;
     public static final int HEIGHT = 800;
     private cube cube;
-    private Mouse mouse;
+    private final Mouse mouse;
     private MyPolygon polygon;
-
+    private Wall wall;
     public Display() {
         this.frame = new JFrame();
         Dimension dimension = new Dimension(WEIGH, HEIGHT);
@@ -33,6 +33,7 @@ public class Display extends Canvas implements Runnable {
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, WEIGH, HEIGHT);
         cube.render(graphics);
+        // wall.render(graphics);
         graphics.dispose();
         strategy.show();
     }
@@ -59,22 +60,34 @@ public class Display extends Canvas implements Runnable {
 
     public void init() {
         this.cube = new cube(150);
+        this.wall= new Wall(new MyPolygon(
+                new MyPoint(200, -300, 0),
+                new MyPoint(-180, -280, 0),
+                new MyPoint(-180, -280, 200),
+                new MyPoint(200, -300, 200)
+        ));
     }
 
     int initialY;
     int initialX;
+
     private void update() {
         int y = mouse.getMouseX();
         int x = mouse.getMouseY();
-            if (mouse.getMouseB() == 1) {
-                int difY = y - initialY;
-                int difX = x - initialX;
-                cube.rotate(0, -difX/2.0, difY/2.0);
-            }
-             initialY = y;
-             initialX = x;
-         //  cube.zoom(mouse.wheelRotation, 1);
+        if (mouse.getMouseB() == 1) {
+            int difY = y - initialY;
+            int difX = x - initialX;
+            cube.rotate(0, -difX / 2.0, difY / 2.0);
         }
+        //  cube.zoom(mouse.wheelRotation, 1);
+        if (mouse.getMouseB() == 3 ) {
+            int difY = y - initialY;
+            int difX = x - initialX;
+            cube.bias(difX, difY);
+        }
+        initialY = y;
+        initialX = x;
+    }
 
     public void stop() {
         running = false;

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class MyPolygon {
     MyPoint[] myPoints;
-    private Color color = Color.CYAN;
+    private Color color = Color.cyan;
 
     public MyPolygon(MyPoint... myPoints) {
         this.myPoints = myPoints;
@@ -16,7 +16,9 @@ public class MyPolygon {
         this.color = color;
         this.myPoints = myPoints;
     }
-
+    public void setColor(Color color){
+        this.color = color;
+    }
     public MyPoint[] getMyPoints() {
         return myPoints;
     }
@@ -56,7 +58,12 @@ public class MyPolygon {
             p.x += w*k;
         }
     }
-
+    public void bias(int deltaX, int deltaY){
+        for(MyPoint p: myPoints){
+            p.z -= deltaX;
+            p.y += deltaY;
+        }
+    }
     public static MyPolygon[] sortPolygons(MyPolygon[] myPolygons) {
         List<MyPolygon> polygonList = Arrays.asList(myPolygons);
 

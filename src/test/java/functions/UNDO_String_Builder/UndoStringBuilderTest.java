@@ -9,8 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class UndoStringBuilderTest {
     @Test
      public void test(){
-        StringBuilder string = new StringBuilder("hello");
-       // string.replace(1, 3);
-        System.out.println(string.toString());
+        UndoStringBuilder undoStringBuilder = new UndoStringBuilder("Hello");
+        System.out.println(undoStringBuilder.toString());
+        undoStringBuilder.reverse();
+        System.out.println(undoStringBuilder.toString());
+        undoStringBuilder.undo();
+        System.out.println(undoStringBuilder.toString());
     }
 }

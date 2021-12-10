@@ -15,24 +15,24 @@ public class StringBuilder {
             str[i] = string.charAt(i);
         }
     }
-    int capacity(){
+    public int capacity(){
         return str.length;
     }                   //tested
-    char charAt(int i){
+    public char charAt(int i){
         return str[i];
     }                   //tested
-    void setCharAt(int i,char symbol){
+    public void setCharAt(int i,char symbol){
         str[i] = symbol;
     }  //tested
 
-    void append(String string){                                //tested
+    public void append(String string){                                //tested
         char[] new_str = Arrays.copyOf(str, str.length + string.length());
         for (int i = 0; i < string.length(); i++) {
             new_str[str.length + i] = string.charAt(i);
         }
         str = new_str;
     }
-    void insert(int i, String string){                        //tested
+    public void insert(int i, String string){                        //tested
         char[] new_str = new char[str.length + string.length()];
         for (int j = 0; j < new_str.length; j++) {
             if(j < i) {
@@ -52,7 +52,7 @@ public class StringBuilder {
         }
         str = new_str;
     }
-    void deleteCharAt(int i){                               //tested
+    public void deleteCharAt(int i){                               //tested
         char[] new_str = new char[str.length - 1];
         int k=0;
         for (int j = 0; j < new_str.length; j++) {
@@ -64,7 +64,7 @@ public class StringBuilder {
         }
         str = new_str;
     }
-    void delete(int start, int end){                           //tested
+    public void delete(int start, int end){                           //tested
         char[] new_str = new char[str.length - (end - start)];
         int j = 0;
         for (int i = 0; i < new_str.length; i++) {
@@ -76,24 +76,24 @@ public class StringBuilder {
         }
         str = new_str;
     }
-    String substring(int start,int end){                        //tested
+    public String substring(int start,int end){                        //tested
         char[] new_str = Arrays.copyOfRange(str, start, end);
-        return Arrays.toString(new_str);
+        return String.valueOf(new_str);
     }
-    String substring(int start){                                //tested
+    public String substring(int start){                                //tested
         return substring(start, str.length);
     }
-    void setLength(int size){                                  //tested
+    public void setLength(int size){                                  //tested
         str = Arrays.copyOf(str, size);
     }
-    void replace(int start,int end, String string){
+    public void replace(int start,int end, String string){
         int j = 0;
         for (int i = start; i < end; i++) {
             str[i] = string.charAt(j);
             j++;
         }
     }
-    void reverse(){                                           //tested
+    public void reverse(){                                           //tested
         char[] new_str = new char[str.length];
         for(int i = str.length - 1; i>= 0; i--){
             new_str[str.length - 1 - i] = str[i];

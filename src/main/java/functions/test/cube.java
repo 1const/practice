@@ -70,5 +70,11 @@ public class cube extends MyPolygon {
             p.zoom(w, k);
         }
     }
+    @Override
+    public void bias(int deltaX, int deltaY){
+        for (MyPolygon p : myPolygons) {
+            p.bias(deltaX, deltaY);
+        }
+    }
 }
 
