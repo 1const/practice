@@ -13,6 +13,7 @@ public class Display extends Canvas implements Runnable {
     private final Mouse mouse;
     private MyPolygon polygon;
     private Wall wall;
+
     public Display() {
         this.frame = new JFrame();
         Dimension dimension = new Dimension(WEIGH, HEIGHT);
@@ -77,7 +78,7 @@ public class Display extends Canvas implements Runnable {
         if (mouse.getMouseB() == 1) {
             int difY = y - initialY;
             int difX = x - initialX;
-            cube.rotate(0, -difX / 2.0, difY / 2.0);
+            cube.rotate(0, -difX / 2.0, difY / 2.0, cube.vector);
         }
         //  cube.zoom(mouse.wheelRotation, 1);
         if (mouse.getMouseB() == 3 ) {

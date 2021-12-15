@@ -31,7 +31,6 @@ public class Mouse implements MouseListener, MouseMotionListener, MouseWheelList
     @Override
     public void mousePressed(MouseEvent e) {
         mouseB = e.getButton();
-        System.out.println(mouseB);
     }
 
     @Override
