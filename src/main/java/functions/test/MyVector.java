@@ -16,9 +16,7 @@ public class MyVector {
         this.z = b.z - a.z;
     }
     public double module(){
-        return Math.sqrt(this.x * this.x
-                + this.y * this.y
-                + this.z * this.z);
+        return Math.sqrt(scalar(this, this));
     }
     public static double scalar(MyVector v1, MyVector v2){
         return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;

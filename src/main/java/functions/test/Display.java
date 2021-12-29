@@ -80,7 +80,12 @@ public class Display extends Canvas implements Runnable {
             int difX = x - initialX;
             cube.rotate(0, -difX / 2.0, difY / 2.0, cube.vector);
         }
-        //  cube.zoom(mouse.wheelRotation, 1);
+        if (mouse.wheelRotation == -1) {
+            cube.zoom(1.01);
+        }
+        else if (mouse.wheelRotation == 1){
+            cube.zoom(0.99);
+        }
         if (mouse.getMouseB() == 3 ) {
             int difY = y - initialY;
             int difX = x - initialX;
@@ -88,6 +93,7 @@ public class Display extends Canvas implements Runnable {
         }
         initialY = y;
         initialX = x;
+        mouse.wheelRotation = 0;
     }
 
     public void stop() {

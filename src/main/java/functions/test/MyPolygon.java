@@ -8,7 +8,7 @@ public class MyPolygon {
     MyPoint[] myPoints;
     private Color color;
     private Color lightColor;
-    private static final double AMBIENT_LIGHT = 0.05;
+    private static final double AMBIENT_LIGHT = 0.5;
     public MyPolygon(MyPoint... myPoints) {
         this.myPoints = myPoints;
     }
@@ -56,10 +56,12 @@ public class MyPolygon {
         }
         return sum / myPoints.length;
     }
-    public void zoom(int w, double k){
+    public void zoom(double k){
         double sum = Arrays.stream(myPoints).mapToDouble(point -> point.x).sum();
         for(MyPoint p: myPoints){
-            p.x += w*k;
+            p.x *= k;
+            p.y *= k;
+            p.z *= k;
         }
     }
     public void bias(int deltaX, int deltaY){

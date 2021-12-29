@@ -5,7 +5,7 @@ import java.awt.*;
 public class cube extends MyPolygon {
     private double s;
     MyPolygon[] myPolygons = new MyPolygon[6];
-    MyVector vector = MyVector.normalize(new MyVector(-1, 1, 1));
+    MyVector vector = MyVector.normalize(new MyVector(200, 200, 200));
     public cube(double side) {
         this.s = side;
         myPolygons[0] = new MyPolygon(Color.CYAN,
@@ -65,9 +65,9 @@ public class cube extends MyPolygon {
     }
 
     @Override
-    public void zoom(int w, double k) {
+    public void zoom(double k) {
         for (MyPolygon p : myPolygons) {
-            p.zoom(w, k);
+            p.zoom(k);
         }
     }
     @Override
